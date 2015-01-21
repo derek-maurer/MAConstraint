@@ -2,11 +2,12 @@
 This project makes it super easy to use AutoLayout. The syntax for AutoLayout is insanely long and this project shortens that syntax by quite a bit.
 
 ###CocoaPods
+```
 pod "MAConstraint"
-
+```
 
 ##Usage
-```
+```Objective-C
 UIView *view = [[UIView alloc] init];
 [view setBackgroundColor:[UIColor redColor]];
 [self.view addSubview:view];
