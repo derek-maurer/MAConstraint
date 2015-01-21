@@ -16,21 +16,11 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "MAConstraint"
-  s.version      = "0.0.1"
-  s.summary      = "This project makes it super easy to use AutoLayout. The syntax for AutoLayout is insanely long and this project shortens that syntax by quite a bit."
-
-  s.description  = <<-DESC
-                   A longer description of MAConstraint in Markdown format.
-
-                   * Think: Why did you write this? What is the focus? What does it do?
-                   * CocoaPods will be using this to generate tags, and improve search results.
-                   * Try to keep it short, snappy and to the point.
-                   * Finally, don't worry about the indent, CocoaPods strips it!
-                   DESC
-
+  s.version      = "0.1"
+  s.summary      = "This project makes it super easy to use AutoLayout."
   s.homepage     = "https://github.com/HomeSchoolDev/MAConstraint"
 
-  s.license      = "MIT (example)"
+  s.license      = { "type" => "MIT", "file" => "LICENSE.txt" }
 
   s.author             = { "Derek" => "derekm9292@gmail.com" }
   s.social_media_url   = "http://twitter.com/Derek_maurer"
