@@ -6,6 +6,7 @@ pod "MAConstraint"
 
 
 ##Usage
+```
 UIView *view = [[UIView alloc] init];
 [view setBackgroundColor:[UIColor redColor]];
 [self.view addSubview:view];
@@ -13,3 +14,4 @@ UIView *view = [[UIView alloc] init];
 [view addRightConstraint]; //Pin the view to the right of it's parent
 [view addHeightConstraint:50.0]; //Set the view's height to 50
 [view addCenterYConstraint]; //Center the view in it's parent
+```
