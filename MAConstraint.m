@@ -130,7 +130,7 @@
 @implementation UIView (Contraint)
 
 - (void)removeConstraintWithIdentifier:(NSString*)tag {
-    MAConstraint *con = [self constraintForTag:tag];
+    MAConstraint *con = [self constraintForIdentifier:tag];
     if (con) {
         [self removeConstraint:con];
     }
