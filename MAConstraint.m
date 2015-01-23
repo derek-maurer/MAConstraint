@@ -230,7 +230,7 @@
 
 - (void)addConstraintWithAtt:(Attribute)att relatedBy:(Relation)relation on:(id)view att:(Attribute)att2 {
     [self throughErrorIfNoSuperView];
-    [self.superview addConstraint:[MAConstraint on:self att:att relatedBy:relation to:self.superview att:att2]];
+    [self.superview addConstraint:[MAConstraint on:self att:att relatedBy:relation to:view att:att2]];
 }
 
 @end
