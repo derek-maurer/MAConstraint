@@ -129,14 +129,14 @@
 
 @implementation UIView (Contraint)
 
-- (void)removeConstraintWithTag:(NSString*)tag {
+- (void)removeConstraintWithIdentifier:(NSString*)tag {
     MAConstraint *con = [self constraintForTag:tag];
     if (con) {
         [self removeConstraint:con];
     }
 }
 
-- (MAConstraint*)constraintForTag:(NSString*)tag {
+- (MAConstraint*)constraintForIdentifier:(NSString*)tag {
     for (NSLayoutConstraint *constraint in self.constraints) {
         if ([constraint isKindOfClass:[NSLayoutConstraint class]]) {
             if ([constraint.identifier isEqualToString:tag]) return (MAConstraint*)constraint;
@@ -226,6 +226,11 @@
 - (void)addCenterYConstraint {
     [self throughErrorIfNoSuperView];
     [self.superview addConstraint:[MAConstraint centerY:self inView:self.superview]];
+}
+
+- (void)addConstraintWithAtt:(Attribute)att relatedBy:(Relation)relation on:(id)view att:(Attribute)att2 {
+    [self throughErrorIfNoSuperView];
+    [self.superview addConstraint:[MAConstraint on:self att:att relatedBy:relation to:self.superview att:att2]];
 }
 
 @end

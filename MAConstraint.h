@@ -64,8 +64,8 @@ typedef enum : NSUInteger {
 
 @interface UIView (Contraint)
 
-- (void)removeConstraintWithTag:(NSString*)tag;
-- (MAConstraint*)constraintForTag:(NSString*)tag;
+- (void)removeConstraintWithIdentifier:(NSString*)tag;
+- (MAConstraint*)constraintForIdentifier:(NSString*)tag;
 
 - (void)addConstraintsForFullSizedView;
 
@@ -88,5 +88,7 @@ typedef enum : NSUInteger {
 
 - (void)addCenterXConstraint;
 - (void)addCenterYConstraint;
+
+- (void)addConstraintWithAtt:(Attribute)att relatedBy:(Relation)relation on:(id)view att:(Attribute)att2;
 
 @end
