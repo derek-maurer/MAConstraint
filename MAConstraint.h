@@ -28,6 +28,20 @@ typedef enum : NSUInteger {
     ThanOrEqual  = 1,
 } Relation;
 
+typedef NS_OPTIONS(NSInteger, Constraint) {
+    ConstraintLeft = 1 << 0,
+    ConstraintRight = 1 << 1,
+    ConstraintTop = 1 << 2,
+    ConstraintBottom = 1 << 3,
+    ConstraintCenterX = 1 << 4,
+    ConstraintCenterY = 1 << 5,
+    ConstraintFullSize = 1 << 6,
+    ConstraintFullWidth = 1 << 7,
+    ConstraintFullHeight = 1 << 8,
+    ConstraintHalfWidth = 1 << 9,
+    ConstraintHalfHeight = 1 << 10
+};
+
 @interface MAConstraint : NSLayoutConstraint
 
 @property (nonatomic, strong) NSString *tag;
@@ -62,12 +76,13 @@ typedef enum : NSUInteger {
 
 @end
 
-@interface UIView (Contraint)
+@interface UIView (MAContraint)
 
-- (void)removeConstraintWithIdentifier:(NSString*)tag;
-- (MAConstraint*)constraintForIdentifier:(NSString*)tag;
+- (void)addMAConstraint:(Constraint)constraint;
 
 - (void)addConstraintsForFullSizedView;
+- (void)addFullWidthConstraint;
+- (void)addFullHeightConstraint;
 
 - (void)addHeightConstraint:(CGFloat)height;
 - (void)addWidthConstraint:(CGFloat)width;
@@ -90,5 +105,8 @@ typedef enum : NSUInteger {
 - (void)addCenterYConstraint;
 
 - (void)addConstraintWithAtt:(Attribute)att relatedBy:(Relation)relation on:(id)view att:(Attribute)att2;
+
+- (void)removeConstraintWithIdentifier:(NSString*)tag;
+- (MAConstraint*)constraintForIdentifier:(NSString*)tag;
 
 @end

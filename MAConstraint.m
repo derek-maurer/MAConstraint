@@ -127,24 +127,7 @@
 /* UIView category */
 ////////////////////////////
 
-@implementation UIView (Contraint)
-
-- (void)removeConstraintWithIdentifier:(NSString*)tag {
-    MAConstraint *con = [self constraintForIdentifier:tag];
-    if (con) {
-        [self removeConstraint:con];
-    }
-}
-
-- (MAConstraint*)constraintForIdentifier:(NSString*)tag {
-    for (NSLayoutConstraint *constraint in self.constraints) {
-        if ([constraint isKindOfClass:[NSLayoutConstraint class]]) {
-            if ([constraint.identifier isEqualToString:tag]) return (MAConstraint*)constraint;
-        }
-    }
-    
-    return nil;
-}
+@implementation UIView (MAContraint)
 
 - (void)throughErrorIfNoSuperView {
     if (!self.superview) {
@@ -153,9 +136,45 @@
     }
 }
 
+- (void)addMAConstraint:(Constraint)constraint {
+    if ((constraint & ConstraintLeft) == ConstraintLeft) 
+        [self addLeftConstraint];
+    if ((constraint & ConstraintRight) == ConstraintRight)
+        [self addRightConstraint];
+    if ((constraint & ConstraintTop) == ConstraintTop)
+        [self addTopConstraint];
+    if ((constraint & ConstraintBottom) == ConstraintBottom)
+        [self addBottomConstraint];
+    if ((constraint & ConstraintCenterX) == ConstraintCenterX)
+        [self addCenterXConstraint];
+    if ((constraint & ConstraintCenterY) == ConstraintCenterY)
+        [self addCenterYConstraint];
+    if ((constraint & ConstraintFullSize) == ConstraintFullSize)
+        [self addConstraintsForFullSizedView];
+    if ((constraint & ConstraintFullWidth) == ConstraintFullWidth)
+        [self addFullWidthConstraint];
+    if ((constraint & ConstraintFullHeight) == ConstraintFullHeight)
+        [self addFullHeightConstraint];
+    if ((constraint & ConstraintHalfWidth) == ConstraintHalfWidth)
+        [self.superview addConstraint:[MAConstraint on:self att:Width relatedBy:Equal to:self.superview att:Width multiplier:0.5 const:0]];
+    if ((constraint & ConstraintHalfHeight) == ConstraintHalfHeight)
+        [self.superview addConstraint:[MAConstraint on:self att:Height relatedBy:Equal to:self.superview att:Height multiplier:0.5 const:0]];
+    
+}
+
 - (void)addConstraintsForFullSizedView {
     [self throughErrorIfNoSuperView];
     [self.superview addConstraints:[MAConstraint constraintsForFullSizedView:self]];
+}
+
+- (void)addFullWidthConstraint {
+    [self throughErrorIfNoSuperView];
+    [self.superview addConstraint:[MAConstraint on:self att:Width relatedBy:Equal to:self.superview att:Width]];
+}
+
+- (void)addFullHeightConstraint {
+    [self throughErrorIfNoSuperView];
+    [self.superview addConstraint:[MAConstraint on:self att:Height relatedBy:Equal to:self.superview att:Height]];
 }
 
 - (void)addHeightConstraint:(CGFloat)height {
@@ -231,6 +250,23 @@
 - (void)addConstraintWithAtt:(Attribute)att relatedBy:(Relation)relation on:(id)view att:(Attribute)att2 {
     [self throughErrorIfNoSuperView];
     [self.superview addConstraint:[MAConstraint on:self att:att relatedBy:relation to:view att:att2]];
+}
+
+- (void)removeConstraintWithIdentifier:(NSString*)tag {
+    MAConstraint *con = [self constraintForIdentifier:tag];
+    if (con) {
+        [self removeConstraint:con];
+    }
+}
+
+- (MAConstraint*)constraintForIdentifier:(NSString*)tag {
+    for (NSLayoutConstraint *constraint in self.constraints) {
+        if ([constraint isKindOfClass:[NSLayoutConstraint class]]) {
+            if ([constraint.identifier isEqualToString:tag]) return (MAConstraint*)constraint;
+        }
+    }
+    
+    return nil;
 }
 
 @end
