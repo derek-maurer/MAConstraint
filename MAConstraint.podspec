@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "MAConstraint"
-  s.version      = "0.3"
+  s.version      = "0.4"
   s.summary      = "This project makes it super easy to use AutoLayout."
   s.homepage     = "https://github.com/HomeSchoolDev/MAConstraint"
 
@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
   s.social_media_url   = "http://twitter.com/Derek_maurer"
 
 
-  s.source       = { :git => "https://github.com/HomeSchoolDev/MAConstraint.git", :tag => "0.3" }
+  s.source       = { :git => "https://github.com/HomeSchoolDev/MAConstraint.git", :tag => "0.4" }
   s.platform = :ios, '7.0'
   s.source_files  = "*.{h,m}"
   s.requires_arc = true
